@@ -3,8 +3,7 @@ import fs from 'fs'
 import path from 'path'
 import mkdirp from 'mkdirp'
 
-export const configRoot = `${os.homedir()}/.zer`
-export const cacheRoot = `${configRoot}/cache`
+export const homedir = os.homedir()
 
 export const ifDirExist = (dir: string) => {
   return fs.existsSync(dir)
@@ -30,12 +29,12 @@ export const getPwdRelativeProject = (subDir: string, runtime = false) => {
 }
 
 export const getBasename = (dir: string) => {
-  return path.basename(dir);
+  return path.basename(dir)
 }
 
 export const copyFileSync = (source: string, target: string) => {
-	let targetFile = target
-	if (fs.existsSync(target)) {
+  let targetFile = target
+  if (fs.existsSync(target)) {
     if (fs.lstatSync(target).isDirectory()) {
       targetFile = path.join(target, path.basename(source))
     }
